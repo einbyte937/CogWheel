@@ -1,0 +1,38 @@
+static public GoogleApiClient mGoogleApiClient;
+
+mGoogleApiClient = new GoogleApiClient.Builder( this )
+.addConnectionCallbacks( this )
+.addOnConnectionFailedListener( this )
+.addApi( Plus.API )
+.addScope( Plus.SCOPE_PLUS_LOGIN )
+.addApi( Games.API )
+.addScope( Games.SCOPE_GAMES )
+.addApi( Drive.API ).addScope( Drive.SCOPE_APPFOLDER )
+.setViewForPopups( this.getWindow( ).getDecorView( ).findViewById( android.R.id.content ) )
+.build();
+
+@Override
+final public void onConnected( Bundle connectionHint )
+{
+	Games.Invitations.registerInvitationListener( mGoogleApiClient, this );
+
+	if ( connectionHint != null ) {
+
+		Log.d(TAG, "onConnected: connection hint provided. Checking for invite.");
+
+		Invitation inv = connectionHint.getParcelable( Multiplayer.EXTRA_INVITATION );
+
+		if ( inv != null && inv.getInvitationId() != null ) {
+
+			Log.d(TAG, "onConnected: connection hint has a room invite!");
+
+			acceptInviteToRoom( inv.getInvitationId());
+
+			return;
+		}
+	}
+
+	switchToMainScreen( );
+
+	Log.d( TAG, "onConnected() called. Sign in successful!" );
+}
