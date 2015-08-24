@@ -2,6 +2,7 @@ package com.example.cogwheel;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -10,6 +11,7 @@ import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
 
 public class CogWheel extends Service
 implements GoogleApiClient.ConnectionCallbacks,
@@ -17,6 +19,14 @@ implements GoogleApiClient.ConnectionCallbacks,
 {
 
     public String TAG = CogWheel.class.getSimpleName( );
+
+    static public GoogleApiClient mGoogleApiClient;
+
+    static public boolean mIsResolving = false;
+
+    static public boolean mShouldResolve = false;
+
+    private static final int RC_SIGN_IN = 0;
 
     public class MyBinder extends Binder
     {
@@ -66,6 +76,27 @@ implements GoogleApiClient.ConnectionCallbacks,
     @Override
     public void onConnectionFailed( ConnectionResult connectionResult )
     {
+        Log.d( TAG, "onConnectionFailed:" + connectionResult );
+
+        if ( !mIsResolving && mShouldResolve ) {
+            if ( connectionResult.hasResolution( ) ) {
+                try {
+                    connectionResult.startResolutionForResult( MainActivity.activity, RC_SIGN_IN );
+                    mIsResolving = true;
+                } catch ( IntentSender.SendIntentException e ) {
+                    Log.e( TAG, "Could not resolve ConnectionResult.", e );
+                    mIsResolving = false;
+                    mGoogleApiClient.connect( );
+                }
+            } else {
+                // Could not resolve the connection result, show the user an
+                // error dialog.
+                //showErrorDialog(connectionResult);
+            }
+        } else {
+            // Show the signed-out UI
+            //showSignedOutUI();
+        }
         Log.d( TAG, "onConnectionFailed( )" );
     }
 }

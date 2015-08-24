@@ -54,10 +54,9 @@ public class MainActivity extends Activity implements
         //RoomUpdateListener,
         //OnInvitationReceivedListener,
 {
-
-    static public GoogleApiClient mGoogleApiClient;
-
     static public String TAG = MainActivity.class.getSimpleName( );
+
+    static public Activity activity;
 
     public CogWheel s;
 
@@ -66,11 +65,15 @@ public class MainActivity extends Activity implements
     {
         super.onCreate(savedInstanceState);
 
+        activity = this;
+
         Intent intent = new Intent( this, CogWheel.class );
 
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 
         setContentView ( R.layout.main );
+
+        findViewById( R.id.sign_in_button ).setOnClickListener( this );
 
         Log.d( TAG, "onCreate( )");
     }
@@ -120,7 +123,7 @@ public class MainActivity extends Activity implements
 
     public void gApiClientConnect( )
     {
-        mGoogleApiClient = new GoogleApiClient.Builder( this )
+        s.mGoogleApiClient = new GoogleApiClient.Builder( this )
                 .addConnectionCallbacks( s )
                 .addOnConnectionFailedListener( s )
                 .addApi( Plus.API )
@@ -133,7 +136,7 @@ public class MainActivity extends Activity implements
 
         try
         {
-            mGoogleApiClient.connect( );
+            s.mGoogleApiClient.connect( );
         }
         catch( Exception e )
         {
@@ -165,8 +168,23 @@ public class MainActivity extends Activity implements
     };
 
     @Override
-    public void onClick( View v )
-    {
-        Log.d( TAG, "onClick( )");
+    public void onClick(View v) {
+        if (v.getId() == R.id.sign_in_button) {
+            onSignInClicked();
+        }
+
+        // ...
+    }
+
+    private void onSignInClicked( ) {
+
+        // User clicked the sign-in button, so begin the sign-in process and automatically
+        // attempt to resolve any errors that occur.
+        CogWheel.mShouldResolve = true;
+
+        s.mGoogleApiClient.connect( );
+
+        // Show a message to the user that we are signing in.
+        //mStatusTextView.setText(R.string.signing_in);
     }
 }
