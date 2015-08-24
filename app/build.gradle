@@ -6,7 +6,11 @@ android {
 
     defaultConfig {
         applicationId "com.example.cogwheel"
+<<<<<<< HEAD
         minSdkVersion 19
+=======
+        minSdkVersion 21
+>>>>>>> origin/master
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -21,5 +25,7 @@ android {
 
 dependencies {
     compile 'com.google.android.gms:play-services:+'
+    compile "com.android.support:support-v4:22.0.+"
+    compile 'com.android.support:appcompat-v7:22.0.+'
     compile fileTree( dir: 'libs', include: ['*.jar'] )
 }
