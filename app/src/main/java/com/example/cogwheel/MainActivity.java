@@ -131,7 +131,14 @@ public class MainActivity extends Activity implements
                 .setViewForPopups( this.getWindow().getDecorView( ).findViewById( R.id.content ) )
                 .build();
 
-        mGoogleApiClient.connect( );
+        try
+        {
+            mGoogleApiClient.connect( );
+        }
+        catch( Exception e )
+        {
+            Log.d( TAG, e.getMessage( ).toString( ));
+        }
     }
 
     private ServiceConnection mConnection = new ServiceConnection( )
