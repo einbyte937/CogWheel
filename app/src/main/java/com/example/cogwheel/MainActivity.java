@@ -71,9 +71,11 @@ public class MainActivity extends Activity implements
 
         bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
 
-        setContentView ( R.layout.main );
+        setContentView(R.layout.main);
 
         findViewById( R.id.sign_in_button ).setOnClickListener( this );
+
+        findViewById( R.id.sign_out_button ).setOnClickListener( this );
 
         Log.d( TAG, "onCreate( )");
     }
@@ -169,10 +171,15 @@ public class MainActivity extends Activity implements
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.sign_in_button) {
-            onSignInClicked();
+        if ( v.getId( ) == R.id.sign_in_button ) {
+            onSignInClicked( );
         }
 
+        if ( v.getId( ) == R.id.sign_out_button ) {
+            Games.signOut( s.mGoogleApiClient );
+
+            s.mGoogleApiClient.disconnect( );
+        }
         // ...
     }
 
