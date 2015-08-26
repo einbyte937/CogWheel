@@ -83,7 +83,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStart( )
     {
-        super.onStart();
+        super.onStart( );
 
         Log.d( TAG, "onStart( )");
     }
@@ -92,7 +92,7 @@ public class MainActivity extends Activity implements
     protected void onResume( )
     {
 
-        super.onResume();
+        super.onResume( );
 
         if(s.mGoogleApiClient!=null)
         s.mGoogleApiClient.connect( );
@@ -103,7 +103,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onPause( )
     {
-        super.onPause();
+        super.onPause( );
 
         unbindService(mConnection);
 
@@ -113,7 +113,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStop( )
     {
-        super.onStop();
+        super.onStop( );
 
         Log.d( TAG, "onStop( )");
     }
@@ -121,7 +121,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onDestroy( )
     {
-        super.onDestroy();
+        super.onDestroy( );
 
         Log.d( TAG, "onDestroy( )");
     }
