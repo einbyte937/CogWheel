@@ -20,8 +20,6 @@ implements GoogleApiClient.ConnectionCallbacks,
 
     public String TAG = CogWheel.class.getSimpleName( );
 
-    static public GoogleApiClient mGoogleApiClient;
-
     static public boolean mIsResolving = false;
 
     static public boolean mShouldResolve = false;
@@ -86,7 +84,7 @@ implements GoogleApiClient.ConnectionCallbacks,
                 } catch ( IntentSender.SendIntentException e ) {
                     Log.e( TAG, "Could not resolve ConnectionResult.", e );
                     mIsResolving = false;
-                    mGoogleApiClient.connect( );
+                    MainActivity.mGoogleApiClient.connect( );
                 }
             } else {
                 // Could not resolve the connection result, show the user an

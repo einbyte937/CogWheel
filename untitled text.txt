@@ -1,0 +1,20 @@
+08-25 22:03:47.055  30136-30136/? D/dalvikvm﹕ Late-enabling CheckJNI
+08-25 22:03:47.209  30136-30136/com.example.cogwheel D/MainActivity﹕ onCreate( )
+08-25 22:03:47.209  30136-30136/com.example.cogwheel D/MainActivity﹕ onStart( )
+08-25 22:03:47.210  30136-30136/com.example.cogwheel D/MainActivity﹕ onResume( )
+08-25 22:03:47.222  30136-30136/com.example.cogwheel D/CogWheel﹕ onCreate( )
+08-25 22:03:47.252  30136-30136/com.example.cogwheel I/Adreno-EGL﹕ <qeglDrvAPI_eglInitialize:410>: EGL 1.4 QUALCOMM build: AU_LINUX_ANDROID_LNX.LA.3.5.1_RB1.04.04.02.048.018_msm8226_LNX.LA.3.5.1_RB1__release_AU ()
+    OpenGL ES Shader Compiler Version: E031.24.00.08
+    Build Date: 03/07/14 Fri
+    Local Branch:
+    Remote Branch: quic/LNX.LA.3.5.1_RB1.1
+    Local Patches: NONE
+    Reconstruct Branch: AU_LINUX_ANDROID_LNX.LA.3.5.1_RB1.04.04.02.048.018 + f2fd134 +  NOTHING
+08-25 22:03:47.294  30136-30136/com.example.cogwheel D/OpenGLRenderer﹕ Enabling debug mode 0
+08-25 22:03:47.358  30136-30136/com.example.cogwheel D/MainActivity﹕ onServiceConnected( )
+08-25 22:03:47.768  30136-30136/com.example.cogwheel D/dalvikvm﹕ Note: class Lcom/google/android/gms/games/internal/IGamesService$Stub; has 195 unimplemented (abstract) methods
+08-25 22:03:47.773  30136-30136/com.example.cogwheel D/CogWheel﹕ onConnected( )
+08-25 22:04:04.685  30136-30136/com.example.cogwheel D/CogWheel﹕ onConnectionFailed:ConnectionResult{statusCode=SIGN_IN_REQUIRED, resolution=PendingIntent{420225f0: android.os.BinderProxy@42022590}}
+08-25 22:04:04.697  30136-30136/com.example.cogwheel D/CogWheel﹕ onConnectionFailed( )
+08-25 22:04:04.707  30136-30136/com.example.cogwheel D/MainActivity﹕ onPause( )
+08-25 22:04:16.809  30136-30136/com.example.cogwheel D/MainActivity﹕ onResume( )
