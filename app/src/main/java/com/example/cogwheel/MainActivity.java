@@ -85,7 +85,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStart( )
     {
-        super.onStart( );
+        super.onStart();
 
         Log.d( TAG, "onStart( )");
     }
@@ -94,7 +94,10 @@ public class MainActivity extends Activity implements
     protected void onResume( )
     {
 
-        super.onResume( );
+        super.onResume();
+
+        if(mGoogleApiClient!=null)
+        mGoogleApiClient.connect( );
 
         Log.d( TAG, "onResume( )" );
     }
@@ -102,9 +105,9 @@ public class MainActivity extends Activity implements
     @Override
     protected void onPause( )
     {
-        super.onPause( );
+        super.onPause();
 
-        unbindService( mConnection );
+        unbindService(mConnection);
 
         Log.d( TAG, "onPause( )" );
     }
@@ -112,7 +115,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onStop( )
     {
-        super.onStop( );
+        super.onStop();
 
         Log.d( TAG, "onStop( )");
     }
@@ -120,7 +123,7 @@ public class MainActivity extends Activity implements
     @Override
     protected void onDestroy( )
     {
-        super.onDestroy( );
+        super.onDestroy();
 
         Log.d( TAG, "onDestroy( )");
     }
@@ -136,7 +139,9 @@ public class MainActivity extends Activity implements
                 .addScope( Games.SCOPE_GAMES )
                 .addApi( Drive.API ).addScope( Drive.SCOPE_APPFOLDER )
                 .setViewForPopups( this.getWindow().getDecorView( ).findViewById( R.id.content ) )
-                .build();
+                .build( );
+
+        CogWheel.mShouldResolve = true;
 
         mGoogleApiClient.connect( );
     }
