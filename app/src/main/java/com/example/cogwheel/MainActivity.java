@@ -56,8 +56,6 @@ public class MainActivity extends Activity implements
 {
     static public String TAG = MainActivity.class.getSimpleName( );
 
-    static public GoogleApiClient mGoogleApiClient;
-
     static public Activity activity;
 
     public CogWheel s;
@@ -96,8 +94,8 @@ public class MainActivity extends Activity implements
 
         super.onResume();
 
-        if(mGoogleApiClient!=null)
-        mGoogleApiClient.connect( );
+        if(s.mGoogleApiClient!=null)
+        s.mGoogleApiClient.connect( );
 
         Log.d( TAG, "onResume( )" );
     }
@@ -130,7 +128,7 @@ public class MainActivity extends Activity implements
 
     public void gApiClientConnect( )
     {
-        mGoogleApiClient = new GoogleApiClient.Builder( this )
+        s.mGoogleApiClient = new GoogleApiClient.Builder( this )
                 .addConnectionCallbacks( s )
                 .addOnConnectionFailedListener( s )
                 .addApi( Plus.API )
@@ -143,7 +141,7 @@ public class MainActivity extends Activity implements
 
         CogWheel.mShouldResolve = true;
 
-        mGoogleApiClient.connect( );
+        s.mGoogleApiClient.connect( );
     }
 
     private ServiceConnection mConnection = new ServiceConnection( )
@@ -176,9 +174,9 @@ public class MainActivity extends Activity implements
         }
 
         if ( v.getId( ) == R.id.sign_out_button ) {
-            Games.signOut( mGoogleApiClient );
+            Games.signOut( s.mGoogleApiClient );
 
-            mGoogleApiClient.disconnect( );
+            s.mGoogleApiClient.disconnect( );
         }
         // ...
     }
@@ -189,7 +187,7 @@ public class MainActivity extends Activity implements
         // attempt to resolve any errors that occur.
         CogWheel.mShouldResolve = true;
 
-        mGoogleApiClient.connect( );
+        s.mGoogleApiClient.connect( );
 
         // Show a message to the user that we are signing in.
         //mStatusTextView.setText(R.string.signing_in);
